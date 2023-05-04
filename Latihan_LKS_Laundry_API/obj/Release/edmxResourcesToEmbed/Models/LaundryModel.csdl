@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Latian_LKS_LaundryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id_category" />
+    </Key>
+    <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="services" Relationship="Self.FK__service__id_cate__32E0915F" FromRole="category" ToRole="service" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_number_customer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address_customer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="headertransactions" Relationship="Self.FK__headertra__id_cu__2C3393D0" FromRole="customer" ToRole="headertransaction" />
+  </EntityType>
+  <EntityType Name="detailpackage">
+    <Key>
+      <PropertyRef Name="id_detail_package" />
+    </Key>
+    <Property Name="id_service" Type="Int32" Nullable="false" />
+    <Property Name="id_package" Type="Int32" Nullable="false" />
+    <Property Name="id_detail_package" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="total_unit_service_detail_package" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="package" Relationship="Self.FK__detailpac__id_pa__398D8EEE" FromRole="detailpackage" ToRole="package" />
+    <NavigationProperty Name="service" Relationship="Self.FK__detailpac__id_se__38996AB5" FromRole="detailpackage" ToRole="service" />
+  </EntityType>
+  <EntityType Name="detailtransaction">
+    <Key>
+      <PropertyRef Name="id_detail_transaction" />
+    </Key>
+    <Property Name="id_service" Type="Int32" />
+    <Property Name="id_header_transaction" Type="Int32" Nullable="false" />
+    <Property Name="id_detail_transaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_package" Type="Int32" />
+    <Property Name="price_detail_transaction" Type="Int32" Nullable="false" />
+    <Property Name="total_unit_detail_transaction" Type="Single" Nullable="false" />
+    <Property Name="complete_datetime_detail_transaction" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="headertransaction" Relationship="Self.FK__detailtra__id_he__46E78A0C" FromRole="detailtransaction" ToRole="headertransaction" />
+    <NavigationProperty Name="package" Relationship="Self.FK__detailtra__id_pa__47DBAE45" FromRole="detailtransaction" ToRole="package" />
+    <NavigationProperty Name="service" Relationship="Self.FK__detailtra__id_se__45F365D3" FromRole="detailtransaction" ToRole="service" />
+  </EntityType>
+  <EntityType Name="discount">
+    <Key>
+      <PropertyRef Name="id_discount" />
+    </Key>
+    <Property Name="id_discount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="discount_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="discount_for" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="discount1" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="id_employee" />
+    </Key>
+    <Property Name="id_job" Type="Int32" Nullable="false" />
+    <Property Name="id_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="password_employee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name_employee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email_employee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="addres_employee" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_number_employee" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_of_birth_employee" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="salary_employee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="job" Relationship="Self.FK__employee__id_job__267ABA7A" FromRole="employee" ToRole="job" />
+    <NavigationProperty Name="headertransactions" Relationship="Self.FK__headertra__id_em__2B3F6F97" FromRole="employee" ToRole="headertransaction" />
+  </EntityType>
+  <EntityType Name="headertransaction">
+    <Key>
+      <PropertyRef Name="id_header_transaction" />
+    </Key>
+    <Property Name="id_employee" Type="Int32" Nullable="false" />
+    <Property Name="id_customer" Type="Int32" Nullable="false" />
+    <Property Name="id_header_transaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transaction_date_time_header_transaction" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="complete_estimation_date_time_header" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="customer" Relationship="Self.FK__headertra__id_cu__2C3393D0" FromRole="headertransaction" ToRole="customer" />
+    <NavigationProperty Name="detailtransactions" Relationship="Self.FK__detailtra__id_he__46E78A0C" FromRole="headertransaction" ToRole="detailtransaction" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__headertra__id_em__2B3F6F97" FromRole="headertransaction" ToRole="employee" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="id_job" />
+    </Key>
+    <Property Name="id_job" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="employees" Relationship="Self.FK__employee__id_job__267ABA7A" FromRole="job" ToRole="employee" />
+  </EntityType>
+  <EntityType Name="package">
+    <Key>
+      <PropertyRef Name="id_package" />
+    </Key>
+    <Property Name="id_package" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_package" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price_package" Type="Int32" Nullable="false" />
+    <Property Name="description_package" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="duration_package" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="detailpackages" Relationship="Self.FK__detailpac__id_pa__398D8EEE" FromRole="package" ToRole="detailpackage" />
+    <NavigationProperty Name="detailtransactions" Relationship="Self.FK__detailtra__id_pa__47DBAE45" FromRole="package" ToRole="detailtransaction" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="id_service" />
+    </Key>
+    <Property Name="id_category" Type="Int32" Nullable="false" />
+    <Property Name="id_unit" Type="Int32" Nullable="false" />
+    <Property Name="id_service" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price_unit_service" Type="Int32" Nullable="false" />
+    <Property Name="estimation_duration_service" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="category" Relationship="Self.FK__service__id_cate__32E0915F" FromRole="service" ToRole="category" />
+    <NavigationProperty Name="detailpackages" Relationship="Self.FK__detailpac__id_se__38996AB5" FromRole="service" ToRole="detailpackage" />
+    <NavigationProperty Name="detailtransactions" Relationship="Self.FK__detailtra__id_se__45F365D3" FromRole="service" ToRole="detailtransaction" />
+    <NavigationProperty Name="unit" Relationship="Self.FK__service__id_unit__33D4B598" FromRole="service" ToRole="unit" />
+  </EntityType>
+  <EntityType Name="unit">
+    <Key>
+      <PropertyRef Name="id_unit" />
+    </Key>
+    <Property Name="id_unit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="services" Relationship="Self.FK__service__id_unit__33D4B598" FromRole="unit" ToRole="service" />
+  </EntityType>
+  <Association Name="FK__service__id_cate__32E0915F">
+    <End Role="category" Type="Self.category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service" Type="Self.service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id_category" />
+      </Principal>
+      <Dependent Role="service">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__headertra__id_cu__2C3393D0">
+    <End Role="customer" Type="Self.customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="headertransaction" Type="Self.headertransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="headertransaction">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detailpac__id_pa__398D8EEE">
+    <End Role="package" Type="Self.package" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detailpackage" Type="Self.detailpackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="package">
+        <PropertyRef Name="id_package" />
+      </Principal>
+      <Dependent Role="detailpackage">
+        <PropertyRef Name="id_package" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detailpac__id_se__38996AB5">
+    <End Role="service" Type="Self.service" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detailpackage" Type="Self.detailpackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service">
+        <PropertyRef Name="id_service" />
+      </Principal>
+      <Dependent Role="detailpackage">
+        <PropertyRef Name="id_service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detailtra__id_he__46E78A0C">
+    <End Role="headertransaction" Type="Self.headertransaction" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detailtransaction" Type="Self.detailtransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="headertransaction">
+        <PropertyRef Name="id_header_transaction" />
+      </Principal>
+      <Dependent Role="detailtransaction">
+        <PropertyRef Name="id_header_transaction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detailtra__id_pa__47DBAE45">
+    <End Role="package" Type="Self.package" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detailtransaction" Type="Self.detailtransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="package">
+        <PropertyRef Name="id_package" />
+      </Principal>
+      <Dependent Role="detailtransaction">
+        <PropertyRef Name="id_package" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detailtra__id_se__45F365D3">
+    <End Role="service" Type="Self.service" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detailtransaction" Type="Self.detailtransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service">
+        <PropertyRef Name="id_service" />
+      </Principal>
+      <Dependent Role="detailtransaction">
+        <PropertyRef Name="id_service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__employee__id_job__267ABA7A">
+    <End Role="job" Type="Self.job" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="employee" Type="Self.employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="id_job" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="id_job" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__headertra__id_em__2B3F6F97">
+    <End Role="employee" Type="Self.employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="headertransaction" Type="Self.headertransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="id_employee" />
+      </Principal>
+      <Dependent Role="headertransaction">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__service__id_unit__33D4B598">
+    <End Role="unit" Type="Self.unit" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="service" Type="Self.service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unit">
+        <PropertyRef Name="id_unit" />
+      </Principal>
+      <Dependent Role="service">
+        <PropertyRef Name="id_unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LaundryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="detailpackages" EntityType="Self.detailpackage" />
+    <EntitySet Name="detailtransactions" EntityType="Self.detailtransaction" />
+    <EntitySet Name="discounts" EntityType="Self.discount" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="headertransactions" EntityType="Self.headertransaction" />
+    <EntitySet Name="jobs" EntityType="Self.job" />
+    <EntitySet Name="packages" EntityType="Self.package" />
+    <EntitySet Name="services" EntityType="Self.service" />
+    <EntitySet Name="units" EntityType="Self.unit" />
+    <AssociationSet Name="FK__service__id_cate__32E0915F" Association="Self.FK__service__id_cate__32E0915F">
+      <End Role="category" EntitySet="categories" />
+      <End Role="service" EntitySet="services" />
+    </AssociationSet>
+    <AssociationSet Name="FK__headertra__id_cu__2C3393D0" Association="Self.FK__headertra__id_cu__2C3393D0">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="headertransaction" EntitySet="headertransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detailpac__id_pa__398D8EEE" Association="Self.FK__detailpac__id_pa__398D8EEE">
+      <End Role="package" EntitySet="packages" />
+      <End Role="detailpackage" EntitySet="detailpackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detailpac__id_se__38996AB5" Association="Self.FK__detailpac__id_se__38996AB5">
+      <End Role="service" EntitySet="services" />
+      <End Role="detailpackage" EntitySet="detailpackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detailtra__id_he__46E78A0C" Association="Self.FK__detailtra__id_he__46E78A0C">
+      <End Role="headertransaction" EntitySet="headertransactions" />
+      <End Role="detailtransaction" EntitySet="detailtransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detailtra__id_pa__47DBAE45" Association="Self.FK__detailtra__id_pa__47DBAE45">
+      <End Role="package" EntitySet="packages" />
+      <End Role="detailtransaction" EntitySet="detailtransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detailtra__id_se__45F365D3" Association="Self.FK__detailtra__id_se__45F365D3">
+      <End Role="service" EntitySet="services" />
+      <End Role="detailtransaction" EntitySet="detailtransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__employee__id_job__267ABA7A" Association="Self.FK__employee__id_job__267ABA7A">
+      <End Role="job" EntitySet="jobs" />
+      <End Role="employee" EntitySet="employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__headertra__id_em__2B3F6F97" Association="Self.FK__headertra__id_em__2B3F6F97">
+      <End Role="employee" EntitySet="employees" />
+      <End Role="headertransaction" EntitySet="headertransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__service__id_unit__33D4B598" Association="Self.FK__service__id_unit__33D4B598">
+      <End Role="unit" EntitySet="units" />
+      <End Role="service" EntitySet="services" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

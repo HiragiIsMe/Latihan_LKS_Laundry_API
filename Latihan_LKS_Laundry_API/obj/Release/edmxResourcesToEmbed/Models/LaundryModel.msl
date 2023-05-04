@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Latian_LKS_LaundryModelStoreContainer" CdmEntityContainer="LaundryEntities">
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="name_category" ColumnName="name_category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="name_customer" ColumnName="name_customer" />
+          <ScalarProperty Name="phone_number_customer" ColumnName="phone_number_customer" />
+          <ScalarProperty Name="address_customer" ColumnName="address_customer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detailpackages">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.detailpackage">
+        <MappingFragment StoreEntitySet="detailpackage">
+          <ScalarProperty Name="id_service" ColumnName="id_service" />
+          <ScalarProperty Name="id_package" ColumnName="id_package" />
+          <ScalarProperty Name="id_detail_package" ColumnName="id_detail_package" />
+          <ScalarProperty Name="total_unit_service_detail_package" ColumnName="total_unit_service_detail_package" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detailtransactions">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.detailtransaction">
+        <MappingFragment StoreEntitySet="detailtransaction">
+          <ScalarProperty Name="id_service" ColumnName="id_service" />
+          <ScalarProperty Name="id_header_transaction" ColumnName="id_header_transaction" />
+          <ScalarProperty Name="id_detail_transaction" ColumnName="id_detail_transaction" />
+          <ScalarProperty Name="id_package" ColumnName="id_package" />
+          <ScalarProperty Name="price_detail_transaction" ColumnName="price_detail_transaction" />
+          <ScalarProperty Name="total_unit_detail_transaction" ColumnName="total_unit_detail_transaction" />
+          <ScalarProperty Name="complete_datetime_detail_transaction" ColumnName="complete_datetime_detail_transaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="discounts">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.discount">
+        <MappingFragment StoreEntitySet="discount">
+          <ScalarProperty Name="id_discount" ColumnName="id_discount" />
+          <ScalarProperty Name="discount_name" ColumnName="discount_name" />
+          <ScalarProperty Name="discount_for" ColumnName="discount_for" />
+          <ScalarProperty Name="discount1" ColumnName="discount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="id_job" ColumnName="id_job" />
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+          <ScalarProperty Name="password_employee" ColumnName="password_employee" />
+          <ScalarProperty Name="name_employee" ColumnName="name_employee" />
+          <ScalarProperty Name="email_employee" ColumnName="email_employee" />
+          <ScalarProperty Name="addres_employee" ColumnName="addres_employee" />
+          <ScalarProperty Name="phone_number_employee" ColumnName="phone_number_employee" />
+          <ScalarProperty Name="date_of_birth_employee" ColumnName="date_of_birth_employee" />
+          <ScalarProperty Name="salary_employee" ColumnName="salary_employee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="headertransactions">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.headertransaction">
+        <MappingFragment StoreEntitySet="headertransaction">
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="id_header_transaction" ColumnName="id_header_transaction" />
+          <ScalarProperty Name="transaction_date_time_header_transaction" ColumnName="transaction_date_time_header_transaction" />
+          <ScalarProperty Name="complete_estimation_date_time_header" ColumnName="complete_estimation_date_time_header" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobs">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="id_job" ColumnName="id_job" />
+          <ScalarProperty Name="name_job" ColumnName="name_job" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="packages">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.package">
+        <MappingFragment StoreEntitySet="package">
+          <ScalarProperty Name="id_package" ColumnName="id_package" />
+          <ScalarProperty Name="name_package" ColumnName="name_package" />
+          <ScalarProperty Name="price_package" ColumnName="price_package" />
+          <ScalarProperty Name="description_package" ColumnName="description_package" />
+          <ScalarProperty Name="duration_package" ColumnName="duration_package" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="services">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.service">
+        <MappingFragment StoreEntitySet="service">
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="id_unit" ColumnName="id_unit" />
+          <ScalarProperty Name="id_service" ColumnName="id_service" />
+          <ScalarProperty Name="name_service" ColumnName="name_service" />
+          <ScalarProperty Name="price_unit_service" ColumnName="price_unit_service" />
+          <ScalarProperty Name="estimation_duration_service" ColumnName="estimation_duration_service" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="units">
+      <EntityTypeMapping TypeName="Latian_LKS_LaundryModel.unit">
+        <MappingFragment StoreEntitySet="unit">
+          <ScalarProperty Name="id_unit" ColumnName="id_unit" />
+          <ScalarProperty Name="name_unit" ColumnName="name_unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
